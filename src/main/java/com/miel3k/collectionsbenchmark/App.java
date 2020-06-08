@@ -3,6 +3,8 @@ package com.miel3k.collectionsbenchmark;
 import com.miel3k.collectionsbenchmark.benchmark.Benchmark;
 import com.miel3k.collectionsbenchmark.enums.CaseType;
 import com.miel3k.collectionsbenchmark.enums.SuitType;
+import com.miel3k.collectionsbenchmark.view.BenchmarkView;
+import com.miel3k.collectionsbenchmark.view.ConsoleView;
 import picocli.CommandLine;
 
 import java.util.ArrayList;
@@ -17,7 +19,8 @@ public class App implements Runnable {
         suitTypeList.add(SuitType.LIST);
         List<CaseType> caseTypeList = new ArrayList<>();
         caseTypeList.add(CaseType.Adding);
-        Benchmark benchmark = new Benchmark(suitTypeList, caseTypeList, 5);
+        BenchmarkView benchmarkView = new ConsoleView();
+        Benchmark benchmark = new Benchmark(benchmarkView, suitTypeList, caseTypeList, 5);
         benchmark.run();
     }
 

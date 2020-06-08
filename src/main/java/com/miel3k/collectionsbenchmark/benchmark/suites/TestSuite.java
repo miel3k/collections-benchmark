@@ -1,5 +1,9 @@
 package com.miel3k.collectionsbenchmark.benchmark.suites;
 
+import com.miel3k.collectionsbenchmark.models.BenchmarkResult;
+
+import java.util.List;
+
 public interface TestSuite {
 
     void startAddingCase();
@@ -9,4 +13,6 @@ public interface TestSuite {
     void startBrowsingCase();
 
     void startContainingCase();
+
+    List<BenchmarkResult> getResults();
 }

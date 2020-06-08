@@ -1,5 +1,9 @@
 package com.miel3k.collectionsbenchmark.benchmark.suites;
 
+import com.miel3k.collectionsbenchmark.models.BenchmarkResult;
+
+import java.util.List;
+
 public class SetTestSuite implements TestSuite {
 
     public SetTestSuite() {
@@ -23,5 +27,10 @@ public class SetTestSuite implements TestSuite {
     @Override
     public void startContainingCase() {
 
+    }
+
+    @Override
+    public List<BenchmarkResult> getResults() {
+        return null;
     }
 }
