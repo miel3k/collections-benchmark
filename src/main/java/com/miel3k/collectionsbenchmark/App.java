@@ -19,6 +19,9 @@ public class App implements Runnable {
         suitTypeList.add(SuitType.LIST);
         List<CaseType> caseTypeList = new ArrayList<>();
         caseTypeList.add(CaseType.Adding);
+        caseTypeList.add(CaseType.Removing);
+        caseTypeList.add(CaseType.Browsing);
+        caseTypeList.add(CaseType.Containing);
         BenchmarkView benchmarkView = new ConsoleView();
         Benchmark benchmark = new Benchmark(benchmarkView, suitTypeList, caseTypeList, 5);
         benchmark.run();

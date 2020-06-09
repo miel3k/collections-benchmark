@@ -1,5 +1,6 @@
 package com.miel3k.collectionsbenchmark.benchmark.suites;
 
+import com.miel3k.collectionsbenchmark.benchmark.BenchmarkSupplier;
 import com.miel3k.collectionsbenchmark.models.BenchmarkResult;
 import com.miel3k.collectionsbenchmark.models.User;
 
@@ -10,67 +11,113 @@ import java.util.UUID;
 
 public class ListTestSuite implements TestSuite {
 
-    private final List<User> list;
-    private final List<User> linkedList;
     private final int iterationsCount;
 
-    private final List<BenchmarkResult> resultList;
-
     public ListTestSuite(int numberOfIterations) {
-        this.list = new ArrayList<>();
-        this.linkedList = new LinkedList<>();
         this.iterationsCount = numberOfIterations;
-        this.resultList = new ArrayList<>();
     }
 
     @Override
-    public void startAddingCase() {
-        list.clear();
+    public List<BenchmarkResult> executeAddingCase() {
         User user = new User(UUID.randomUUID().toString(), "UserName", 10);
+        List<User> arrayList = new ArrayList<>();
+        BenchmarkResult arrayListResult = executeListCase(
+                "Adding",
+                iterationsCount,
+                arrayList,
+                collection -> collection.add(0, user)
+        );
+        List<User> linkedList = new LinkedList<>();
+        BenchmarkResult linkedListResult = executeListCase(
+                "Adding",
+                iterationsCount,
+                linkedList,
+                collection -> collection.add(0, user)
+        );
+        List<BenchmarkResult> resultList = new ArrayList<>();
+        resultList.add(arrayListResult);
+        resultList.add(linkedListResult);
+        return resultList;
+    }
+
+    @Override
+    public List<BenchmarkResult> executeRemovingCase() {
+        List<User> arrayList = BenchmarkSupplier.getArrayList(500);
+        BenchmarkResult arrayListResult = executeListCase(
+                "Removing",
+                iterationsCount,
+                arrayList,
+                collection -> collection.remove(0)
+        );
+        List<User> linkedList = BenchmarkSupplier.getLinkedList(500);
+        BenchmarkResult linkedListResult = executeListCase(
+                "Removing",
+                iterationsCount,
+                linkedList,
+                collection -> collection.remove(0)
+        );
+        List<BenchmarkResult> resultList = new ArrayList<>();
+        resultList.add(arrayListResult);
+        resultList.add(linkedListResult);
+        return resultList;
+    }
+
+    @Override
+    public List<BenchmarkResult> executeBrowsingCase() {
+        List<User> arrayList = BenchmarkSupplier.getArrayList(500);
+        BenchmarkResult arrayListResult = executeListCase(
+                "Browsing",
+                iterationsCount,
+                arrayList,
+                collection -> collection.get(0)
+        );
+        List<User> linkedList = BenchmarkSupplier.getLinkedList(500);
+        BenchmarkResult linkedListResult = executeListCase(
+                "Browsing",
+                iterationsCount,
+                linkedList,
+                collection -> collection.get(0)
+        );
+        List<BenchmarkResult> resultList = new ArrayList<>();
+        resultList.add(arrayListResult);
+        resultList.add(linkedListResult);
+        return resultList;
+    }
+
+    @Override
+    public List<BenchmarkResult> executeContainingCase() {
+        List<User> arrayList = BenchmarkSupplier.getArrayList(500);
+        User user = arrayList.get(0);
+        BenchmarkResult arrayListResult = executeListCase(
+                "Containing",
+                iterationsCount,
+                arrayList,
+                collection -> collection.contains(user)
+        );
+        List<User> linkedList = BenchmarkSupplier.getLinkedList(500);
+        BenchmarkResult linkedListResult = executeListCase(
+                "Containing",
+                iterationsCount,
+                linkedList,
+                collection -> collection.contains(user)
+        );
+        List<BenchmarkResult> resultList = new ArrayList<>();
+        resultList.add(arrayListResult);
+        resultList.add(linkedListResult);
+        return resultList;
+    }
+
+    private BenchmarkResult executeListCase(String caseType, int iterationsCount, List<User> list, Listable listable) {
         long startTime = System.nanoTime();
         for (int i = 0; i < iterationsCount; i++) {
-            list.add(0, user);
+            listable.execute(list);
         }
         long endTime = System.nanoTime();
-        BenchmarkResult arrayListResult = new BenchmarkResult(
-                "Adding",
-                "ArrayList",
+        return new BenchmarkResult(
+                caseType,
+                list.getClass().getName(),
                 iterationsCount,
                 endTime - startTime
         );
-        resultList.add(arrayListResult);
-        linkedList.clear();
-        startTime = System.nanoTime();
-        for (int i = 0; i < iterationsCount; i++) {
-            linkedList.add(0, user);
-        }
-        endTime = System.nanoTime();
-        BenchmarkResult linkedListResult = new BenchmarkResult(
-                "Adding",
-                "LinkedList",
-                iterationsCount,
-                endTime - startTime
-        );
-        resultList.add(linkedListResult);
-    }
-
-    @Override
-    public void startRemovingCase() {
-
-    }
-
-    @Override
-    public void startBrowsingCase() {
-
-    }
-
-    @Override
-    public void startContainingCase() {
-
-    }
-
-    @Override
-    public List<BenchmarkResult> getResults() {
-        return resultList;
     }
 }

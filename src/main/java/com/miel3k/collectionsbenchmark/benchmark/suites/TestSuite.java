@@ -6,13 +6,11 @@ import java.util.List;
 
 public interface TestSuite {
 
-    void startAddingCase();
+    List<BenchmarkResult> executeAddingCase();
 
-    void startRemovingCase();
+    List<BenchmarkResult> executeRemovingCase();
 
-    void startBrowsingCase();
+    List<BenchmarkResult> executeBrowsingCase();
 
-    void startContainingCase();
-
-    List<BenchmarkResult> getResults();
+    List<BenchmarkResult> executeContainingCase();
 }

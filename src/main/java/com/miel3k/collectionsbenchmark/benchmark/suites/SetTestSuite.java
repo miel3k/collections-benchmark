@@ -10,27 +10,22 @@ public class SetTestSuite implements TestSuite {
     }
 
     @Override
-    public void startAddingCase() {
-
+    public List<BenchmarkResult> executeAddingCase() {
+        return null;
     }
 
     @Override
-    public void startRemovingCase() {
-
+    public List<BenchmarkResult> executeRemovingCase() {
+        return null;
     }
 
     @Override
-    public void startBrowsingCase() {
-
+    public List<BenchmarkResult> executeBrowsingCase() {
+        return null;
     }
 
     @Override
-    public void startContainingCase() {
-
-    }
-
-    @Override
-    public List<BenchmarkResult> getResults() {
+    public List<BenchmarkResult> executeContainingCase() {
         return null;
     }
 }
