@@ -1,4 +1,4 @@
-package com.miel3k.collectionsbenchmark.benchmark.suites;
+package com.miel3k.collectionsbenchmark.benchmark.suites.list;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package com.miel3k.collectionsbenchmark.benchmark.suites;
+package com.miel3k.collectionsbenchmark.benchmark.suites.set;
 
+import com.miel3k.collectionsbenchmark.benchmark.suites.TestSuite;
 import com.miel3k.collectionsbenchmark.models.BenchmarkResult;
 
 import java.util.List;
