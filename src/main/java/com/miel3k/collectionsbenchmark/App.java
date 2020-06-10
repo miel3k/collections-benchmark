@@ -18,6 +18,7 @@ public class App implements Runnable {
         System.out.println("Hello from Java Collections Benchmark");
         List<SuitType> suitTypeList = new ArrayList<>();
         suitTypeList.add(SuitType.LIST);
+        suitTypeList.add(SuitType.SET);
         List<CaseType> caseTypeList = new ArrayList<>();
         caseTypeList.add(CaseType.Adding);
         caseTypeList.add(CaseType.Removing);

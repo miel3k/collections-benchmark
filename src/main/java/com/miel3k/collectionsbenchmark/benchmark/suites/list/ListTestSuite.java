@@ -2,7 +2,6 @@ package com.miel3k.collectionsbenchmark.benchmark.suites.list;
 
 import com.miel3k.collectionsbenchmark.benchmark.BenchmarkSupplier;
 import com.miel3k.collectionsbenchmark.benchmark.suites.TestSuite;
-import com.miel3k.collectionsbenchmark.benchmark.suites.list.Listable;
 import com.miel3k.collectionsbenchmark.models.BenchmarkResult;
 import com.miel3k.collectionsbenchmark.models.Testable;
 

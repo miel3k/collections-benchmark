@@ -1,14 +1,12 @@
 package com.miel3k.collectionsbenchmark.benchmark.suites.factory;
 
+import com.miel3k.collectionsbenchmark.benchmark.suites.TestSuite;
 import com.miel3k.collectionsbenchmark.benchmark.suites.list.ListTestSuite;
 import com.miel3k.collectionsbenchmark.benchmark.suites.set.SetTestSuite;
-import com.miel3k.collectionsbenchmark.benchmark.suites.TestSuite;
 import com.miel3k.collectionsbenchmark.enums.Model;
 import com.miel3k.collectionsbenchmark.enums.SuitType;
 import com.miel3k.collectionsbenchmark.models.Author;
 import com.miel3k.collectionsbenchmark.models.Book;
-
-import java.util.UUID;
 
 public class TestSuiteFactory {
 
@@ -22,22 +20,22 @@ public class TestSuiteFactory {
     }
 
     private static TestSuite getAuthorTestSuite(SuitType type, int collectionSize, int numberOfIterations) {
+        Author author = new Author("Name", 10);
         if (SuitType.LIST.name().equalsIgnoreCase(type.name())) {
-            Author author = new Author(UUID.randomUUID().toString(), "UserName", 10);
             return new ListTestSuite<>(author, collectionSize, numberOfIterations);
         } else if (SuitType.SET.name().equalsIgnoreCase(type.name())) {
-            return new SetTestSuite();
+            return new SetTestSuite<>(author, collectionSize, numberOfIterations);
         }
         return null;
     }
 
     private static TestSuite getBookTestSuite(SuitType type, int collectionSize, int numberOfIterations) {
+        Author author = new Author("Name", 10);
+        Book book = new Book("Title", author);
         if (SuitType.LIST.name().equalsIgnoreCase(type.name())) {
-            Author author = new Author(UUID.randomUUID().toString(), "UserName", 10);
-            Book book = new Book("Title", author);
             return new ListTestSuite<>(book, collectionSize, numberOfIterations);
         } else if (SuitType.SET.name().equalsIgnoreCase(type.name())) {
-            return new SetTestSuite();
+            return new SetTestSuite<>(book, collectionSize, numberOfIterations);
         }
         return null;
     }
