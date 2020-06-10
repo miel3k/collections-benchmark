@@ -17,14 +17,16 @@ public class Benchmark {
     private final Model model;
     private final List<SuitType> suitTypes;
     private final List<CaseType> caseTypes;
+    private final int collectionSize;
     private final int iterationsCount;
     private final List<BenchmarkResult> resultList;
 
-    public Benchmark(BenchmarkView view, Model model, List<SuitType> suitTypeList, List<CaseType> caseTypeList, int iterationsCount) {
+    public Benchmark(BenchmarkView view, Model model, List<SuitType> suitTypeList, List<CaseType> caseTypeList, int collectionSize, int iterationsCount) {
         this.view = view;
         this.model = model;
         this.suitTypes = suitTypeList;
         this.caseTypes = caseTypeList;
+        this.collectionSize = collectionSize;
         this.iterationsCount = iterationsCount;
         this.resultList = new ArrayList<>();
     }
@@ -33,7 +35,7 @@ public class Benchmark {
         List<BenchmarkResult> resultList = new ArrayList<>();
         List<TestSuite> testSuites = new ArrayList<>();
         for (SuitType type : suitTypes) {
-            testSuites.add(TestSuiteFactory.getTestSuite(model, type, iterationsCount));
+            testSuites.add(TestSuiteFactory.getTestSuite(model, type, collectionSize, iterationsCount));
         }
         for (TestSuite suite : testSuites) {
             if (caseTypes.contains(CaseType.Adding)) {

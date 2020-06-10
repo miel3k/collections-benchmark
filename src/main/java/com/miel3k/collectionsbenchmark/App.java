@@ -24,7 +24,7 @@ public class App implements Runnable {
         caseTypeList.add(CaseType.Browsing);
         caseTypeList.add(CaseType.Containing);
         BenchmarkView benchmarkView = new ConsoleView();
-        Benchmark benchmark = new Benchmark(benchmarkView, Model.Author, suitTypeList, caseTypeList, 5);
+        Benchmark benchmark = new Benchmark(benchmarkView, Model.Author, suitTypeList, caseTypeList, 10, 5);
         benchmark.run();
     }
 

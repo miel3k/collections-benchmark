@@ -5,34 +5,34 @@ import com.miel3k.collectionsbenchmark.models.BenchmarkResult;
 import com.miel3k.collectionsbenchmark.models.Testable;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ListTestSuite<T extends Testable<T>> implements TestSuite {
 
     private final T testObject;
+    private final int collectionSize;
     private final int iterationsCount;
 
-    public ListTestSuite(T testObject, int numberOfIterations) {
+    public ListTestSuite(T testObject, int collectionSize, int numberOfIterations) {
         this.testObject = testObject;
+        this.collectionSize = collectionSize;
         this.iterationsCount = numberOfIterations;
     }
 
     @Override
     public List<BenchmarkResult> executeAddingCase() {
-        List<T> arrayList = new ArrayList<>();
+        String caseType = "Adding";
+        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, collectionSize);
         BenchmarkResult arrayListResult = executeListCase(
-                "Adding",
-                iterationsCount,
+                caseType,
                 arrayList,
-                collection -> collection.add(0, testObject)
+                collection -> collection.add(collection.size() / 2, testObject)
         );
-        List<T> linkedList = new LinkedList<>();
+        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, collectionSize);
         BenchmarkResult linkedListResult = executeListCase(
-                "Adding",
-                iterationsCount,
+                caseType,
                 linkedList,
-                collection -> collection.add(0, testObject)
+                collection -> collection.add(collection.size() / 2, testObject)
         );
         List<BenchmarkResult> resultList = new ArrayList<>();
         resultList.add(arrayListResult);
@@ -42,19 +42,18 @@ public class ListTestSuite<T extends Testable<T>> implements TestSuite {
 
     @Override
     public List<BenchmarkResult> executeRemovingCase() {
-        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, 500);
+        String caseType = "Removing";
+        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, collectionSize);
         BenchmarkResult arrayListResult = executeListCase(
-                "Removing",
-                iterationsCount,
+                caseType,
                 arrayList,
-                collection -> collection.remove(0)
+                collection -> collection.remove(collection.size() / 2)
         );
-        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, 500);
+        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, collectionSize);
         BenchmarkResult linkedListResult = executeListCase(
-                "Removing",
-                iterationsCount,
+                caseType,
                 linkedList,
-                collection -> collection.remove(0)
+                collection -> collection.remove(collection.size() / 2)
         );
         List<BenchmarkResult> resultList = new ArrayList<>();
         resultList.add(arrayListResult);
@@ -64,19 +63,18 @@ public class ListTestSuite<T extends Testable<T>> implements TestSuite {
 
     @Override
     public List<BenchmarkResult> executeBrowsingCase() {
-        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, 500);
+        String caseType = "Browsing";
+        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, collectionSize);
         BenchmarkResult arrayListResult = executeListCase(
-                "Browsing",
-                iterationsCount,
+                caseType,
                 arrayList,
-                collection -> collection.get(0)
+                collection -> collection.get(collection.size() / 2)
         );
-        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, 500);
+        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, collectionSize);
         BenchmarkResult linkedListResult = executeListCase(
-                "Browsing",
-                iterationsCount,
+                caseType,
                 linkedList,
-                collection -> collection.get(0)
+                collection -> collection.get(collection.size() / 2)
         );
         List<BenchmarkResult> resultList = new ArrayList<>();
         resultList.add(arrayListResult);
@@ -86,17 +84,16 @@ public class ListTestSuite<T extends Testable<T>> implements TestSuite {
 
     @Override
     public List<BenchmarkResult> executeContainingCase() {
-        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, 500);
+        String caseType = "Containing";
+        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, collectionSize);
         BenchmarkResult arrayListResult = executeListCase(
-                "Containing",
-                iterationsCount,
+                caseType,
                 arrayList,
                 collection -> collection.contains(testObject)
         );
-        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, 500);
+        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, collectionSize);
         BenchmarkResult linkedListResult = executeListCase(
-                "Containing",
-                iterationsCount,
+                caseType,
                 linkedList,
                 collection -> collection.contains(testObject)
         );
@@ -106,7 +103,7 @@ public class ListTestSuite<T extends Testable<T>> implements TestSuite {
         return resultList;
     }
 
-    private BenchmarkResult executeListCase(String caseType, int iterationsCount, List<T> list, Listable<T> listable) {
+    private BenchmarkResult executeListCase(String caseType, List<T> list, Listable<T> listable) {
         long startTime = System.nanoTime();
         for (int i = 0; i < iterationsCount; i++) {
             listable.execute(list);
@@ -116,8 +113,9 @@ public class ListTestSuite<T extends Testable<T>> implements TestSuite {
                 testObject.getClass().getSimpleName(),
                 caseType,
                 list.getClass().getSimpleName(),
+                collectionSize,
                 iterationsCount,
-                endTime - startTime
+                (endTime - startTime) / iterationsCount
         );
     }
 }
