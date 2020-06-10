@@ -6,14 +6,24 @@ public class BenchmarkResult {
     private final String caseType;
     private final String collection;
     private final int collectionSize;
+    private final int currentSize;
     private final int iterations;
     private long time;
 
-    public BenchmarkResult(String model, String caseType, String collection, int collectionSize, int iterations, long time) {
+    public BenchmarkResult(
+            String model,
+            String caseType,
+            String collection,
+            int collectionSize,
+            int currentSize,
+            int iterations,
+            long time
+    ) {
         this.model = model;
         this.caseType = caseType;
         this.collection = collection;
         this.collectionSize = collectionSize;
+        this.currentSize = currentSize;
         this.iterations = iterations;
         this.time = time;
     }
@@ -32,6 +42,10 @@ public class BenchmarkResult {
 
     public int getCollectionSize() {
         return collectionSize;
+    }
+
+    public int getCurrentSize() {
+        return currentSize;
     }
 
     public int getIterations() {

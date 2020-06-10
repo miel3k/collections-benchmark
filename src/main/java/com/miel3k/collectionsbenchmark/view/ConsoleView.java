@@ -11,14 +11,15 @@ public class ConsoleView implements BenchmarkView {
 
     @Override
     public void displayResults(List<BenchmarkResult> results) {
-        System.out.format("%16s%16s%16s%16s%16s%40s%n", "Model", "Case", "Collection", "Size", "Iterations", "Single operation (avg) time (ns)");
+        System.out.format("%16s%16s%16s%16s%16s%16s%40s%n", "Model", "Case", "Collection", "Size", "Current Size", "Iterations", "Single operation (avg) time (ns)");
         for (BenchmarkResult result : results) {
             System.out.format(
-                    "%16s%16s%16s%16d%16d%40d%n",
+                    "%16s%16s%16s%16d%16d%16d%40d%n",
                     result.getModel(),
                     result.getCaseType(),
                     result.getCollection(),
                     result.getCollectionSize(),
+                    result.getCurrentSize(),
                     result.getIterations(),
                     result.getTime()
             );

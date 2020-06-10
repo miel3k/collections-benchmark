@@ -75,6 +75,7 @@ public class SetTestSuite<T extends Testable<T>> implements TestSuite {
                 caseType,
                 set.getClass().getSimpleName(),
                 collectionSize,
+                set.size(),
                 iterationsCount,
                 (endTime - startTime) / iterationsCount
         );

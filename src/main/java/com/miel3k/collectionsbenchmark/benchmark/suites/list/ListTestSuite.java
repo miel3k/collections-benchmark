@@ -115,6 +115,7 @@ public class ListTestSuite<T extends Testable<T>> implements TestSuite {
                 caseType,
                 list.getClass().getSimpleName(),
                 collectionSize,
+                list.size(),
                 iterationsCount,
                 (endTime - startTime) / iterationsCount
         );
