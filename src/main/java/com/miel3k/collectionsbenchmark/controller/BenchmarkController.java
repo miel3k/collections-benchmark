@@ -11,7 +11,9 @@ import com.miel3k.collectionsbenchmark.view.BenchmarkView;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,11 +69,13 @@ public class BenchmarkController {
         }
         String collectionSizeText = "cs" + configuration.getCollectionSize();
         String iterationsCountText = "i" + configuration.getIterationsCount();
+        String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         String fileName = getTestSuiteTypesText()
                 + "_" + configuration.getBenchmarkEntity().name()
                 + "_" + getCaseTypesText()
                 + "_" + collectionSizeText
-                + "_" + iterationsCountText;
+                + "_" + iterationsCountText
+                + "_" + timestamp;
         String fileContent = getBenchmarkResultsText(results);
         try (PrintWriter printWriter = new PrintWriter("output/" + fileName + ".txt")) {
             printWriter.println(fileContent);
