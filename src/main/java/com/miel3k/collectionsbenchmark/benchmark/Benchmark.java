@@ -19,7 +19,6 @@ public class Benchmark {
     private final List<CaseType> caseTypes;
     private final int collectionSize;
     private final int iterationsCount;
-    private final List<BenchmarkResult> resultList;
 
     public Benchmark(BenchmarkView view, Model model, List<SuitType> suitTypeList, List<CaseType> caseTypeList, int collectionSize, int iterationsCount) {
         this.view = view;
@@ -28,7 +27,6 @@ public class Benchmark {
         this.caseTypes = caseTypeList;
         this.collectionSize = collectionSize;
         this.iterationsCount = iterationsCount;
-        this.resultList = new ArrayList<>();
     }
 
     public void run() {

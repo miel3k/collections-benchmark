@@ -51,7 +51,30 @@ public class SetTestSuite<T extends Testable<T>> implements TestSuite {
 
     @Override
     public List<BenchmarkResult> executeRemovingCase() {
-        return new ArrayList<>();
+        String caseType = "Removing";
+        Set<T> hashSet = BenchmarkSupplier.getHashSet(testObject, collectionSize);
+        BenchmarkResult hashSetResult = executeSetCase(
+                caseType,
+                hashSet,
+                collection -> collection.remove(testObject)
+        );
+        Set<T> linkedHashSet = BenchmarkSupplier.getLinkedHashSet(testObject, collectionSize);
+        BenchmarkResult linkedHashSetResult = executeSetCase(
+                caseType,
+                linkedHashSet,
+                collection -> collection.remove(testObject)
+        );
+        Set<T> treeSet = BenchmarkSupplier.getTreeSet(testObject, collectionSize);
+        BenchmarkResult treeSetResult = executeSetCase(
+                caseType,
+                treeSet,
+                collection -> collection.remove(testObject)
+        );
+        List<BenchmarkResult> resultList = new ArrayList<>();
+        resultList.add(hashSetResult);
+        resultList.add(linkedHashSetResult);
+        resultList.add(treeSetResult);
+        return resultList;
     }
 
     @Override
@@ -61,7 +84,30 @@ public class SetTestSuite<T extends Testable<T>> implements TestSuite {
 
     @Override
     public List<BenchmarkResult> executeContainingCase() {
-        return new ArrayList<>();
+        String caseType = "Containing";
+        Set<T> hashSet = BenchmarkSupplier.getHashSet(testObject, collectionSize);
+        BenchmarkResult hashSetResult = executeSetCase(
+                caseType,
+                hashSet,
+                collection -> collection.contains(testObject)
+        );
+        Set<T> linkedHashSet = BenchmarkSupplier.getLinkedHashSet(testObject, collectionSize);
+        BenchmarkResult linkedHashSetResult = executeSetCase(
+                caseType,
+                linkedHashSet,
+                collection -> collection.contains(testObject)
+        );
+        Set<T> treeSet = BenchmarkSupplier.getTreeSet(testObject, collectionSize);
+        BenchmarkResult treeSetResult = executeSetCase(
+                caseType,
+                treeSet,
+                collection -> collection.contains(testObject)
+        );
+        List<BenchmarkResult> resultList = new ArrayList<>();
+        resultList.add(hashSetResult);
+        resultList.add(linkedHashSetResult);
+        resultList.add(treeSetResult);
+        return resultList;
     }
 
     private BenchmarkResult executeSetCase(String caseType, Set<T> set, Setable<T> setable) {

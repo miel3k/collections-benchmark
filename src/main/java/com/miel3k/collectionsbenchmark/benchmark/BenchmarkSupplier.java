@@ -24,7 +24,8 @@ public class BenchmarkSupplier {
 
     public static <T extends Testable<T>> Set<T> getHashSet(T testObject, int n) {
         Set<T> set = new HashSet<>();
-        for (int i = 0; i < n; i++) {
+        set.add(testObject);
+        for (int i = 0; i < n - 1; i++) {
             set.add(testObject.copy());
         }
         return set;
@@ -32,7 +33,8 @@ public class BenchmarkSupplier {
 
     public static <T extends Testable<T>> Set<T> getLinkedHashSet(T testObject, int n) {
         Set<T> set = new LinkedHashSet<>();
-        for (int i = 0; i < n; i++) {
+        set.add(testObject);
+        for (int i = 0; i < n - 1; i++) {
             set.add(testObject.copy());
         }
         return set;
@@ -40,7 +42,8 @@ public class BenchmarkSupplier {
 
     public static <T extends Testable<T>> Set<T> getTreeSet(T testObject, int n) {
         Set<T> set = new TreeSet<>();
-        for (int i = 0; i < n; i++) {
+        set.add(testObject);
+        for (int i = 0; i < n - 1; i++) {
             set.add(testObject.copy());
         }
         return set;
