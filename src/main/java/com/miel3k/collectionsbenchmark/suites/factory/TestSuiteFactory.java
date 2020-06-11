@@ -1,7 +1,7 @@
 package com.miel3k.collectionsbenchmark.suites.factory;
 
-import com.miel3k.collectionsbenchmark.enums.Model;
-import com.miel3k.collectionsbenchmark.enums.SuitType;
+import com.miel3k.collectionsbenchmark.enums.BenchmarkEntity;
+import com.miel3k.collectionsbenchmark.enums.TestSuiteType;
 import com.miel3k.collectionsbenchmark.model.Author;
 import com.miel3k.collectionsbenchmark.model.Book;
 import com.miel3k.collectionsbenchmark.suites.TestSuite;
@@ -11,35 +11,35 @@ import com.miel3k.collectionsbenchmark.suites.set.SetTestSuite;
 
 public class TestSuiteFactory {
 
-    public static TestSuite getTestSuite(Model model, SuitType type, int collectionSize, int numberOfIterations) {
-        if (model.name().equalsIgnoreCase(Model.Book.name())) {
+    public static TestSuite getTestSuite(BenchmarkEntity benchmarkEntity, TestSuiteType type, int collectionSize, int numberOfIterations) {
+        if (benchmarkEntity.name().equalsIgnoreCase(BenchmarkEntity.Book.name())) {
             return getBookTestSuite(type, collectionSize, numberOfIterations);
-        } else if (model.name().equalsIgnoreCase(Model.Author.name())) {
+        } else if (benchmarkEntity.name().equalsIgnoreCase(BenchmarkEntity.Author.name())) {
             return getAuthorTestSuite(type, collectionSize, numberOfIterations);
         }
         return null;
     }
 
-    private static TestSuite getAuthorTestSuite(SuitType type, int collectionSize, int numberOfIterations) {
+    private static TestSuite getAuthorTestSuite(TestSuiteType type, int collectionSize, int numberOfIterations) {
         Author author = new Author("Name", 10);
-        if (SuitType.LIST.name().equalsIgnoreCase(type.name())) {
+        if (TestSuiteType.LIST.name().equalsIgnoreCase(type.name())) {
             return new ListTestSuite<>(author, collectionSize, numberOfIterations);
-        } else if (SuitType.SET.name().equalsIgnoreCase(type.name())) {
+        } else if (TestSuiteType.SET.name().equalsIgnoreCase(type.name())) {
             return new SetTestSuite<>(author, collectionSize, numberOfIterations);
-        } else if (SuitType.QUEUE.name().equalsIgnoreCase(type.name())) {
+        } else if (TestSuiteType.QUEUE.name().equalsIgnoreCase(type.name())) {
             return new QueueTestSuite<>(author, collectionSize, numberOfIterations);
         }
         return null;
     }
 
-    private static TestSuite getBookTestSuite(SuitType type, int collectionSize, int numberOfIterations) {
+    private static TestSuite getBookTestSuite(TestSuiteType type, int collectionSize, int numberOfIterations) {
         Author author = new Author("Name", 10);
         Book book = new Book("Title", author);
-        if (SuitType.LIST.name().equalsIgnoreCase(type.name())) {
+        if (TestSuiteType.LIST.name().equalsIgnoreCase(type.name())) {
             return new ListTestSuite<>(book, collectionSize, numberOfIterations);
-        } else if (SuitType.SET.name().equalsIgnoreCase(type.name())) {
+        } else if (TestSuiteType.SET.name().equalsIgnoreCase(type.name())) {
             return new SetTestSuite<>(book, collectionSize, numberOfIterations);
-        } else if (SuitType.QUEUE.name().equalsIgnoreCase(type.name())) {
+        } else if (TestSuiteType.QUEUE.name().equalsIgnoreCase(type.name())) {
             return new QueueTestSuite<>(book, collectionSize, numberOfIterations);
         }
         return null;

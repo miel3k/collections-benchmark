@@ -1,7 +1,7 @@
 package com.miel3k.collectionsbenchmark.controller;
 
-import com.miel3k.collectionsbenchmark.enums.CaseType;
-import com.miel3k.collectionsbenchmark.enums.SuitType;
+import com.miel3k.collectionsbenchmark.enums.TestCaseType;
+import com.miel3k.collectionsbenchmark.enums.TestSuiteType;
 import com.miel3k.collectionsbenchmark.model.BenchmarkConfiguration;
 import com.miel3k.collectionsbenchmark.model.BenchmarkResult;
 import com.miel3k.collectionsbenchmark.suites.TestSuite;
@@ -23,10 +23,10 @@ public class BenchmarkController {
 
     public void run() {
         List<TestSuite> testSuites = new ArrayList<>();
-        for (SuitType type : configuration.getSuitTypes()) {
+        for (TestSuiteType testSuiteType : configuration.getTestSuiteTypes()) {
             TestSuite testSuite = TestSuiteFactory.getTestSuite(
-                    configuration.getModel(),
-                    type,
+                    configuration.getBenchmarkEntity(),
+                    testSuiteType,
                     configuration.getCollectionSize(),
                     configuration.getIterationsCount()
             );
@@ -39,16 +39,16 @@ public class BenchmarkController {
     private List<BenchmarkResult> executeTestSuites(List<TestSuite> testSuites) {
         List<BenchmarkResult> resultList = new ArrayList<>();
         for (TestSuite suite : testSuites) {
-            if (configuration.getCaseTypes().contains(CaseType.Adding)) {
+            if (configuration.getCaseTypes().contains(TestCaseType.Adding)) {
                 resultList.addAll(suite.executeAddingCase());
             }
-            if (configuration.getCaseTypes().contains(CaseType.Removing)) {
+            if (configuration.getCaseTypes().contains(TestCaseType.Removing)) {
                 resultList.addAll(suite.executeRemovingCase());
             }
-            if (configuration.getCaseTypes().contains(CaseType.Browsing)) {
+            if (configuration.getCaseTypes().contains(TestCaseType.Browsing)) {
                 resultList.addAll(suite.executeBrowsingCase());
             }
-            if (configuration.getCaseTypes().contains(CaseType.Containing)) {
+            if (configuration.getCaseTypes().contains(TestCaseType.Containing)) {
                 resultList.addAll(suite.executeContainingCase());
             }
         }

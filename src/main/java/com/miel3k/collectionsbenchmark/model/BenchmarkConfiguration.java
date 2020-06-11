@@ -1,36 +1,36 @@
 package com.miel3k.collectionsbenchmark.model;
 
-import com.miel3k.collectionsbenchmark.enums.CaseType;
-import com.miel3k.collectionsbenchmark.enums.Model;
-import com.miel3k.collectionsbenchmark.enums.SuitType;
+import com.miel3k.collectionsbenchmark.enums.TestCaseType;
+import com.miel3k.collectionsbenchmark.enums.BenchmarkEntity;
+import com.miel3k.collectionsbenchmark.enums.TestSuiteType;
 
 import java.util.List;
 
 public class BenchmarkConfiguration {
 
-    private final Model model;
-    private final List<SuitType> suitTypes;
-    private final List<CaseType> caseTypes;
+    private final BenchmarkEntity benchmarkEntity;
+    private final List<TestSuiteType> testSuiteTypes;
+    private final List<TestCaseType> caseTypes;
     private final int collectionSize;
     private final int iterationsCount;
 
-    public BenchmarkConfiguration(Model model, List<SuitType> suitTypeList, List<CaseType> caseTypeList, int collectionSize, int iterationsCount) {
-        this.model = model;
-        this.suitTypes = suitTypeList;
+    public BenchmarkConfiguration(BenchmarkEntity benchmarkEntity, List<TestSuiteType> testSuiteTypeList, List<TestCaseType> caseTypeList, int collectionSize, int iterationsCount) {
+        this.benchmarkEntity = benchmarkEntity;
+        this.testSuiteTypes = testSuiteTypeList;
         this.caseTypes = caseTypeList;
         this.collectionSize = collectionSize;
         this.iterationsCount = iterationsCount;
     }
 
-    public Model getModel() {
-        return model;
+    public BenchmarkEntity getBenchmarkEntity() {
+        return benchmarkEntity;
     }
 
-    public List<SuitType> getSuitTypes() {
-        return suitTypes;
+    public List<TestSuiteType> getTestSuiteTypes() {
+        return testSuiteTypes;
     }
 
-    public List<CaseType> getCaseTypes() {
+    public List<TestCaseType> getCaseTypes() {
         return caseTypes;
     }
 

@@ -1,6 +1,6 @@
 package com.miel3k.collectionsbenchmark.enums;
 
-public enum SuitType {
+public enum TestSuiteType {
     LIST,
     SET,
     QUEUE

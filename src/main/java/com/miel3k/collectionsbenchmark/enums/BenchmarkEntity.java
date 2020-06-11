@@ -1,6 +1,6 @@
 package com.miel3k.collectionsbenchmark.enums;
 
-public enum Model {
+public enum BenchmarkEntity {
     Book,
     Author
 }

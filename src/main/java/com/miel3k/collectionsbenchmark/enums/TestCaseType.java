@@ -1,6 +1,6 @@
 package com.miel3k.collectionsbenchmark.enums;
 
-public enum CaseType {
+public enum TestCaseType {
     Adding,
     Removing,
     Browsing,
