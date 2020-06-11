@@ -1,17 +1,17 @@
-package com.miel3k.collectionsbenchmark.benchmark;
+package com.miel3k.collectionsbenchmark.controller;
 
-import com.miel3k.collectionsbenchmark.benchmark.suites.TestSuite;
-import com.miel3k.collectionsbenchmark.benchmark.suites.factory.TestSuiteFactory;
 import com.miel3k.collectionsbenchmark.enums.CaseType;
 import com.miel3k.collectionsbenchmark.enums.Model;
 import com.miel3k.collectionsbenchmark.enums.SuitType;
-import com.miel3k.collectionsbenchmark.models.BenchmarkResult;
+import com.miel3k.collectionsbenchmark.model.BenchmarkResult;
+import com.miel3k.collectionsbenchmark.suites.TestSuite;
+import com.miel3k.collectionsbenchmark.suites.factory.TestSuiteFactory;
 import com.miel3k.collectionsbenchmark.view.BenchmarkView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Benchmark {
+public class BenchmarkController {
 
     private final BenchmarkView view;
     private final Model model;
@@ -20,7 +20,7 @@ public class Benchmark {
     private final int collectionSize;
     private final int iterationsCount;
 
-    public Benchmark(BenchmarkView view, Model model, List<SuitType> suitTypeList, List<CaseType> caseTypeList, int collectionSize, int iterationsCount) {
+    public BenchmarkController(BenchmarkView view, Model model, List<SuitType> suitTypeList, List<CaseType> caseTypeList, int collectionSize, int iterationsCount) {
         this.view = view;
         this.model = model;
         this.suitTypes = suitTypeList;

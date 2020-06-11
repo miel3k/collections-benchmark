@@ -1,4 +1,4 @@
-package com.miel3k.collectionsbenchmark.models;
+package com.miel3k.collectionsbenchmark.model;
 
 import java.util.Objects;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.miel3k.collectionsbenchmark.benchmark.suites.set;
+package com.miel3k.collectionsbenchmark.suites.set;
 
 import java.util.Set;
 

@@ -1,9 +1,9 @@
-package com.miel3k.collectionsbenchmark.benchmark.suites.set;
+package com.miel3k.collectionsbenchmark.suites.set;
 
-import com.miel3k.collectionsbenchmark.benchmark.BenchmarkSupplier;
-import com.miel3k.collectionsbenchmark.benchmark.suites.TestSuite;
-import com.miel3k.collectionsbenchmark.models.BenchmarkResult;
-import com.miel3k.collectionsbenchmark.models.Testable;
+import com.miel3k.collectionsbenchmark.model.BenchmarkResult;
+import com.miel3k.collectionsbenchmark.model.Testable;
+import com.miel3k.collectionsbenchmark.suites.TestSuite;
+import com.miel3k.collectionsbenchmark.suites.supplier.TestSuiteSupplier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,19 +24,19 @@ public class SetTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeAddingCase() {
         String caseType = "Adding";
-        Set<T> hashSet = BenchmarkSupplier.getHashSet(testObject, collectionSize);
+        Set<T> hashSet = TestSuiteSupplier.getHashSet(testObject, collectionSize);
         BenchmarkResult hashSetResult = executeSetCase(
                 caseType,
                 hashSet,
                 collection -> collection.add(testObject.copy())
         );
-        Set<T> linkedHashSet = BenchmarkSupplier.getLinkedHashSet(testObject, collectionSize);
+        Set<T> linkedHashSet = TestSuiteSupplier.getLinkedHashSet(testObject, collectionSize);
         BenchmarkResult linkedHashSetResult = executeSetCase(
                 caseType,
                 linkedHashSet,
                 collection -> collection.add(testObject.copy())
         );
-        Set<T> treeSet = BenchmarkSupplier.getTreeSet(testObject, collectionSize);
+        Set<T> treeSet = TestSuiteSupplier.getTreeSet(testObject, collectionSize);
         BenchmarkResult treeSetResult = executeSetCase(
                 caseType,
                 treeSet,
@@ -52,19 +52,19 @@ public class SetTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeRemovingCase() {
         String caseType = "Removing";
-        Set<T> hashSet = BenchmarkSupplier.getHashSet(testObject, collectionSize);
+        Set<T> hashSet = TestSuiteSupplier.getHashSet(testObject, collectionSize);
         BenchmarkResult hashSetResult = executeSetCase(
                 caseType,
                 hashSet,
                 collection -> collection.remove(testObject)
         );
-        Set<T> linkedHashSet = BenchmarkSupplier.getLinkedHashSet(testObject, collectionSize);
+        Set<T> linkedHashSet = TestSuiteSupplier.getLinkedHashSet(testObject, collectionSize);
         BenchmarkResult linkedHashSetResult = executeSetCase(
                 caseType,
                 linkedHashSet,
                 collection -> collection.remove(testObject)
         );
-        Set<T> treeSet = BenchmarkSupplier.getTreeSet(testObject, collectionSize);
+        Set<T> treeSet = TestSuiteSupplier.getTreeSet(testObject, collectionSize);
         BenchmarkResult treeSetResult = executeSetCase(
                 caseType,
                 treeSet,
@@ -85,19 +85,19 @@ public class SetTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeContainingCase() {
         String caseType = "Containing";
-        Set<T> hashSet = BenchmarkSupplier.getHashSet(testObject, collectionSize);
+        Set<T> hashSet = TestSuiteSupplier.getHashSet(testObject, collectionSize);
         BenchmarkResult hashSetResult = executeSetCase(
                 caseType,
                 hashSet,
                 collection -> collection.contains(testObject)
         );
-        Set<T> linkedHashSet = BenchmarkSupplier.getLinkedHashSet(testObject, collectionSize);
+        Set<T> linkedHashSet = TestSuiteSupplier.getLinkedHashSet(testObject, collectionSize);
         BenchmarkResult linkedHashSetResult = executeSetCase(
                 caseType,
                 linkedHashSet,
                 collection -> collection.contains(testObject)
         );
-        Set<T> treeSet = BenchmarkSupplier.getTreeSet(testObject, collectionSize);
+        Set<T> treeSet = TestSuiteSupplier.getTreeSet(testObject, collectionSize);
         BenchmarkResult treeSetResult = executeSetCase(
                 caseType,
                 treeSet,

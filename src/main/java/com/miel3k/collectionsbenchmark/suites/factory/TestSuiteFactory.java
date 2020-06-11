@@ -1,13 +1,13 @@
-package com.miel3k.collectionsbenchmark.benchmark.suites.factory;
+package com.miel3k.collectionsbenchmark.suites.factory;
 
-import com.miel3k.collectionsbenchmark.benchmark.suites.TestSuite;
-import com.miel3k.collectionsbenchmark.benchmark.suites.list.ListTestSuite;
-import com.miel3k.collectionsbenchmark.benchmark.suites.queue.QueueTestSuite;
-import com.miel3k.collectionsbenchmark.benchmark.suites.set.SetTestSuite;
 import com.miel3k.collectionsbenchmark.enums.Model;
 import com.miel3k.collectionsbenchmark.enums.SuitType;
-import com.miel3k.collectionsbenchmark.models.Author;
-import com.miel3k.collectionsbenchmark.models.Book;
+import com.miel3k.collectionsbenchmark.model.Author;
+import com.miel3k.collectionsbenchmark.model.Book;
+import com.miel3k.collectionsbenchmark.suites.TestSuite;
+import com.miel3k.collectionsbenchmark.suites.list.ListTestSuite;
+import com.miel3k.collectionsbenchmark.suites.queue.QueueTestSuite;
+import com.miel3k.collectionsbenchmark.suites.set.SetTestSuite;
 
 public class TestSuiteFactory {
 

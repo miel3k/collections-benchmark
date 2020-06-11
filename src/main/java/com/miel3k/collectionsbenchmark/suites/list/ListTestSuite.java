@@ -1,9 +1,9 @@
-package com.miel3k.collectionsbenchmark.benchmark.suites.list;
+package com.miel3k.collectionsbenchmark.suites.list;
 
-import com.miel3k.collectionsbenchmark.benchmark.BenchmarkSupplier;
-import com.miel3k.collectionsbenchmark.benchmark.suites.TestSuite;
-import com.miel3k.collectionsbenchmark.models.BenchmarkResult;
-import com.miel3k.collectionsbenchmark.models.Testable;
+import com.miel3k.collectionsbenchmark.model.BenchmarkResult;
+import com.miel3k.collectionsbenchmark.model.Testable;
+import com.miel3k.collectionsbenchmark.suites.TestSuite;
+import com.miel3k.collectionsbenchmark.suites.supplier.TestSuiteSupplier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +23,13 @@ public class ListTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeAddingCase() {
         String caseType = "Adding";
-        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, collectionSize);
+        List<T> arrayList = TestSuiteSupplier.getArrayList(testObject, collectionSize);
         BenchmarkResult arrayListResult = executeListCase(
                 caseType,
                 arrayList,
                 collection -> collection.add(collection.size() / 2, testObject)
         );
-        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, collectionSize);
+        List<T> linkedList = TestSuiteSupplier.getLinkedList(testObject, collectionSize);
         BenchmarkResult linkedListResult = executeListCase(
                 caseType,
                 linkedList,
@@ -44,13 +44,13 @@ public class ListTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeRemovingCase() {
         String caseType = "Removing";
-        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, collectionSize);
+        List<T> arrayList = TestSuiteSupplier.getArrayList(testObject, collectionSize);
         BenchmarkResult arrayListResult = executeListCase(
                 caseType,
                 arrayList,
                 collection -> collection.remove(collection.size() / 2)
         );
-        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, collectionSize);
+        List<T> linkedList = TestSuiteSupplier.getLinkedList(testObject, collectionSize);
         BenchmarkResult linkedListResult = executeListCase(
                 caseType,
                 linkedList,
@@ -65,13 +65,13 @@ public class ListTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeBrowsingCase() {
         String caseType = "Browsing";
-        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, collectionSize);
+        List<T> arrayList = TestSuiteSupplier.getArrayList(testObject, collectionSize);
         BenchmarkResult arrayListResult = executeListCase(
                 caseType,
                 arrayList,
                 collection -> collection.get(collection.size() / 2)
         );
-        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, collectionSize);
+        List<T> linkedList = TestSuiteSupplier.getLinkedList(testObject, collectionSize);
         BenchmarkResult linkedListResult = executeListCase(
                 caseType,
                 linkedList,
@@ -86,13 +86,13 @@ public class ListTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeContainingCase() {
         String caseType = "Containing";
-        List<T> arrayList = BenchmarkSupplier.getArrayList(testObject, collectionSize);
+        List<T> arrayList = TestSuiteSupplier.getArrayList(testObject, collectionSize);
         BenchmarkResult arrayListResult = executeListCase(
                 caseType,
                 arrayList,
                 collection -> collection.contains(testObject)
         );
-        List<T> linkedList = BenchmarkSupplier.getLinkedList(testObject, collectionSize);
+        List<T> linkedList = TestSuiteSupplier.getLinkedList(testObject, collectionSize);
         BenchmarkResult linkedListResult = executeListCase(
                 caseType,
                 linkedList,

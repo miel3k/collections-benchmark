@@ -1,4 +1,4 @@
-package com.miel3k.collectionsbenchmark.benchmark.suites.queue;
+package com.miel3k.collectionsbenchmark.suites.queue;
 
 import java.util.Queue;
 

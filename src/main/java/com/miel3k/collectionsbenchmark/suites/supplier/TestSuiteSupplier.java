@@ -1,10 +1,10 @@
-package com.miel3k.collectionsbenchmark.benchmark;
+package com.miel3k.collectionsbenchmark.suites.supplier;
 
-import com.miel3k.collectionsbenchmark.models.Testable;
+import com.miel3k.collectionsbenchmark.model.Testable;
 
 import java.util.*;
 
-public class BenchmarkSupplier {
+public class TestSuiteSupplier {
 
     public static <T extends Testable<T>> List<T> getArrayList(T testObject, int n) {
         List<T> list = new ArrayList<>();

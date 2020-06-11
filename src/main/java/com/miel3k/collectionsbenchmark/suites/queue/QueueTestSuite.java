@@ -1,9 +1,9 @@
-package com.miel3k.collectionsbenchmark.benchmark.suites.queue;
+package com.miel3k.collectionsbenchmark.suites.queue;
 
-import com.miel3k.collectionsbenchmark.benchmark.BenchmarkSupplier;
-import com.miel3k.collectionsbenchmark.benchmark.suites.TestSuite;
-import com.miel3k.collectionsbenchmark.models.BenchmarkResult;
-import com.miel3k.collectionsbenchmark.models.Testable;
+import com.miel3k.collectionsbenchmark.model.BenchmarkResult;
+import com.miel3k.collectionsbenchmark.model.Testable;
+import com.miel3k.collectionsbenchmark.suites.TestSuite;
+import com.miel3k.collectionsbenchmark.suites.supplier.TestSuiteSupplier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class QueueTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeAddingCase() {
         String caseType = "Adding";
-        Queue<T> priorityQueue = BenchmarkSupplier.getPriorityQueue(testObject, collectionSize);
+        Queue<T> priorityQueue = TestSuiteSupplier.getPriorityQueue(testObject, collectionSize);
         BenchmarkResult priorityQueueResult = executeQueueCase(
                 caseType,
                 priorityQueue,
@@ -38,7 +38,7 @@ public class QueueTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeRemovingCase() {
         String caseType = "Removing";
-        Queue<T> priorityQueue = BenchmarkSupplier.getPriorityQueue(testObject, collectionSize);
+        Queue<T> priorityQueue = TestSuiteSupplier.getPriorityQueue(testObject, collectionSize);
         BenchmarkResult priorityQueueResult = executeQueueCase(
                 caseType,
                 priorityQueue,
@@ -52,7 +52,7 @@ public class QueueTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeBrowsingCase() {
         String caseType = "Browsing";
-        Queue<T> priorityQueue = BenchmarkSupplier.getPriorityQueue(testObject, collectionSize);
+        Queue<T> priorityQueue = TestSuiteSupplier.getPriorityQueue(testObject, collectionSize);
         BenchmarkResult priorityQueueResult = executeQueueCase(
                 caseType,
                 priorityQueue,
@@ -66,7 +66,7 @@ public class QueueTestSuite<T extends Testable<T>> implements TestSuite {
     @Override
     public List<BenchmarkResult> executeContainingCase() {
         String caseType = "Containing";
-        Queue<T> priorityQueue = BenchmarkSupplier.getPriorityQueue(testObject, collectionSize);
+        Queue<T> priorityQueue = TestSuiteSupplier.getPriorityQueue(testObject, collectionSize);
         BenchmarkResult priorityQueueResult = executeQueueCase(
                 caseType,
                 priorityQueue,
