@@ -2,6 +2,17 @@ package com.miel3k.collectionsbenchmark.model;
 
 public class BenchmarkResult {
 
+    public static String HEADER = String.format(
+            "%16s%16s%16s%16s%16s%16s%40s",
+            "Model",
+            "Case",
+            "Collection",
+            "Size",
+            "Current Size",
+            "Iterations",
+            "Single operation (avg) time (ns)"
+    );
+
     private final String model;
     private final String caseType;
     private final String collection;
@@ -54,5 +65,19 @@ public class BenchmarkResult {
 
     public long getTime() {
         return time;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "%16s%16s%16s%16d%16d%16d%40d",
+                model,
+                caseType,
+                collection,
+                collectionSize,
+                currentSize,
+                iterations,
+                time
+        );
     }
 }

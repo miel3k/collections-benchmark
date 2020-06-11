@@ -30,3 +30,9 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+
+# macOS
+.DS_Store
+
+# jcb output
+/output

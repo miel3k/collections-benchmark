@@ -1,7 +1,7 @@
 package com.miel3k.collectionsbenchmark.model;
 
-import com.miel3k.collectionsbenchmark.enums.TestCaseType;
 import com.miel3k.collectionsbenchmark.enums.BenchmarkEntity;
+import com.miel3k.collectionsbenchmark.enums.TestCaseType;
 import com.miel3k.collectionsbenchmark.enums.TestSuiteType;
 
 import java.util.List;
@@ -13,13 +13,22 @@ public class BenchmarkConfiguration {
     private final List<TestCaseType> caseTypes;
     private final int collectionSize;
     private final int iterationsCount;
+    private final boolean isWriteEnabled;
 
-    public BenchmarkConfiguration(BenchmarkEntity benchmarkEntity, List<TestSuiteType> testSuiteTypeList, List<TestCaseType> caseTypeList, int collectionSize, int iterationsCount) {
+    public BenchmarkConfiguration(
+            BenchmarkEntity benchmarkEntity,
+            List<TestSuiteType> testSuiteTypeList,
+            List<TestCaseType> caseTypeList,
+            int collectionSize,
+            int iterationsCount,
+            boolean isWriteEnabled
+    ) {
         this.benchmarkEntity = benchmarkEntity;
         this.testSuiteTypes = testSuiteTypeList;
         this.caseTypes = caseTypeList;
         this.collectionSize = collectionSize;
         this.iterationsCount = iterationsCount;
+        this.isWriteEnabled = isWriteEnabled;
     }
 
     public BenchmarkEntity getBenchmarkEntity() {
@@ -40,5 +49,9 @@ public class BenchmarkConfiguration {
 
     public int getIterationsCount() {
         return iterationsCount;
+    }
+
+    public boolean isWriteEnabled() {
+        return isWriteEnabled;
     }
 }

@@ -12,7 +12,7 @@ import picocli.CommandLine;
 import java.util.ArrayList;
 import java.util.List;
 
-@CommandLine.Command(name = "jbm", mixinStandardHelpOptions = true, version = "jbm - Java Collections Benchmark 0.0.1")
+@CommandLine.Command(name = "jcb", mixinStandardHelpOptions = true, version = "jcb - Java Collections Benchmark 0.0.1")
 public class App implements Runnable {
 
     @CommandLine.Option(names = "-l", description = "list: List benchmark")
@@ -36,6 +36,9 @@ public class App implements Runnable {
     @CommandLine.Option(names = "-i", description = "iterations: (int)", defaultValue = "5")
     int iterations;
 
+    @CommandLine.Option(names = "-w", description = "write: write results to file")
+    boolean isWriteEnabled;
+
     public void run() {
         System.out.println("Hello from Java Collections Benchmark");
         BenchmarkConfiguration benchmarkConfiguration = new BenchmarkConfiguration(
@@ -43,7 +46,8 @@ public class App implements Runnable {
                 parseTestSuiteTypes(),
                 parseCaseTypes(),
                 collectionSize,
-                iterations
+                iterations,
+                isWriteEnabled
         );
         BenchmarkView benchmarkView = new ConsoleView();
         BenchmarkController benchmarkController = new BenchmarkController(benchmarkView, benchmarkConfiguration);

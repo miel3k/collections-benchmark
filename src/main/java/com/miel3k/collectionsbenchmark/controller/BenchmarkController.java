@@ -8,8 +8,12 @@ import com.miel3k.collectionsbenchmark.suites.TestSuite;
 import com.miel3k.collectionsbenchmark.suites.factory.TestSuiteFactory;
 import com.miel3k.collectionsbenchmark.view.BenchmarkView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BenchmarkController {
 
@@ -34,6 +38,7 @@ public class BenchmarkController {
         }
         List<BenchmarkResult> resultList = executeTestSuites(testSuites);
         view.displayResults(resultList);
+        if (configuration.isWriteEnabled()) writeResults(resultList);
     }
 
     private List<BenchmarkResult> executeTestSuites(List<TestSuite> testSuites) {
@@ -53,6 +58,54 @@ public class BenchmarkController {
             }
         }
         return resultList;
+    }
+
+    private void writeResults(List<BenchmarkResult> results) {
+        File directory = new File("output");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        String collectionSizeText = "cs" + configuration.getCollectionSize();
+        String iterationsCountText = "i" + configuration.getIterationsCount();
+        String fileName = getTestSuiteTypesText()
+                + "_" + configuration.getBenchmarkEntity().name()
+                + "_" + getCaseTypesText()
+                + "_" + collectionSizeText
+                + "_" + iterationsCountText;
+        String fileContent = getBenchmarkResultsText(results);
+        try (PrintWriter printWriter = new PrintWriter("output/" + fileName + ".txt")) {
+            printWriter.println(fileContent);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getCaseTypesText() {
+        List<String> caseTypes = configuration
+                .getCaseTypes()
+                .stream()
+                .map(type -> type.name().substring(0, 1))
+                .collect(Collectors.toList());
+        return String.join("_", caseTypes);
+    }
+
+    private String getTestSuiteTypesText() {
+        List<String> testSuiteTypes = configuration
+                .getTestSuiteTypes()
+                .stream()
+                .map(type -> type.name().substring(0, 1))
+                .collect(Collectors.toList());
+        return String.join("_", testSuiteTypes);
+    }
+
+    private String getBenchmarkResultsText(List<BenchmarkResult> results) {
+        StringBuilder text = new StringBuilder();
+        text.append(BenchmarkResult.HEADER);
+        for (BenchmarkResult result : results) {
+            String row = result.toString();
+            text.append(row);
+        }
+        return text.toString();
     }
 }
 
