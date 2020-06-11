@@ -19,6 +19,7 @@ public class App implements Runnable {
         List<SuitType> suitTypeList = new ArrayList<>();
         suitTypeList.add(SuitType.LIST);
         suitTypeList.add(SuitType.SET);
+        suitTypeList.add(SuitType.QUEUE);
         List<CaseType> caseTypeList = new ArrayList<>();
         caseTypeList.add(CaseType.Adding);
         caseTypeList.add(CaseType.Removing);

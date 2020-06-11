@@ -2,6 +2,7 @@ package com.miel3k.collectionsbenchmark.benchmark.suites.factory;
 
 import com.miel3k.collectionsbenchmark.benchmark.suites.TestSuite;
 import com.miel3k.collectionsbenchmark.benchmark.suites.list.ListTestSuite;
+import com.miel3k.collectionsbenchmark.benchmark.suites.queue.QueueTestSuite;
 import com.miel3k.collectionsbenchmark.benchmark.suites.set.SetTestSuite;
 import com.miel3k.collectionsbenchmark.enums.Model;
 import com.miel3k.collectionsbenchmark.enums.SuitType;
@@ -25,6 +26,8 @@ public class TestSuiteFactory {
             return new ListTestSuite<>(author, collectionSize, numberOfIterations);
         } else if (SuitType.SET.name().equalsIgnoreCase(type.name())) {
             return new SetTestSuite<>(author, collectionSize, numberOfIterations);
+        } else if (SuitType.QUEUE.name().equalsIgnoreCase(type.name())) {
+            return new QueueTestSuite<>(author, collectionSize, numberOfIterations);
         }
         return null;
     }
@@ -36,6 +39,8 @@ public class TestSuiteFactory {
             return new ListTestSuite<>(book, collectionSize, numberOfIterations);
         } else if (SuitType.SET.name().equalsIgnoreCase(type.name())) {
             return new SetTestSuite<>(book, collectionSize, numberOfIterations);
+        } else if (SuitType.QUEUE.name().equalsIgnoreCase(type.name())) {
+            return new QueueTestSuite<>(book, collectionSize, numberOfIterations);
         }
         return null;
     }

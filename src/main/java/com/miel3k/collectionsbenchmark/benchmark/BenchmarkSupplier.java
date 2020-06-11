@@ -8,7 +8,8 @@ public class BenchmarkSupplier {
 
     public static <T extends Testable<T>> List<T> getArrayList(T testObject, int n) {
         List<T> list = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
+        list.add(testObject);
+        for (int i = 0; i < n - 1; i++) {
             list.add(testObject.copy());
         }
         return list;
@@ -16,7 +17,8 @@ public class BenchmarkSupplier {
 
     public static <T extends Testable<T>> List<T> getLinkedList(T testObject, int n) {
         List<T> list = new LinkedList<>();
-        for (int i = 0; i < n; i++) {
+        list.add(testObject);
+        for (int i = 0; i < n - 1; i++) {
             list.add(testObject.copy());
         }
         return list;
@@ -47,5 +49,14 @@ public class BenchmarkSupplier {
             set.add(testObject.copy());
         }
         return set;
+    }
+
+    public static <T extends Testable<T>> Queue<T> getPriorityQueue(T testObject, int n) {
+        Queue<T> queue = new PriorityQueue<>();
+        queue.add(testObject);
+        for (int i = 0; i < n - 1; i++) {
+            queue.add(testObject.copy());
+        }
+        return queue;
     }
 }
