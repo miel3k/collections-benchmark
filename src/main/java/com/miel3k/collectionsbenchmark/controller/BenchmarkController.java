@@ -1,8 +1,8 @@
 package com.miel3k.collectionsbenchmark.controller;
 
 import com.miel3k.collectionsbenchmark.enums.CaseType;
-import com.miel3k.collectionsbenchmark.enums.Model;
 import com.miel3k.collectionsbenchmark.enums.SuitType;
+import com.miel3k.collectionsbenchmark.model.BenchmarkConfiguration;
 import com.miel3k.collectionsbenchmark.model.BenchmarkResult;
 import com.miel3k.collectionsbenchmark.suites.TestSuite;
 import com.miel3k.collectionsbenchmark.suites.factory.TestSuiteFactory;
@@ -14,42 +14,45 @@ import java.util.List;
 public class BenchmarkController {
 
     private final BenchmarkView view;
-    private final Model model;
-    private final List<SuitType> suitTypes;
-    private final List<CaseType> caseTypes;
-    private final int collectionSize;
-    private final int iterationsCount;
+    private final BenchmarkConfiguration configuration;
 
-    public BenchmarkController(BenchmarkView view, Model model, List<SuitType> suitTypeList, List<CaseType> caseTypeList, int collectionSize, int iterationsCount) {
+    public BenchmarkController(BenchmarkView view, BenchmarkConfiguration configuration) {
         this.view = view;
-        this.model = model;
-        this.suitTypes = suitTypeList;
-        this.caseTypes = caseTypeList;
-        this.collectionSize = collectionSize;
-        this.iterationsCount = iterationsCount;
+        this.configuration = configuration;
     }
 
     public void run() {
-        List<BenchmarkResult> resultList = new ArrayList<>();
         List<TestSuite> testSuites = new ArrayList<>();
-        for (SuitType type : suitTypes) {
-            testSuites.add(TestSuiteFactory.getTestSuite(model, type, collectionSize, iterationsCount));
+        for (SuitType type : configuration.getSuitTypes()) {
+            TestSuite testSuite = TestSuiteFactory.getTestSuite(
+                    configuration.getModel(),
+                    type,
+                    configuration.getCollectionSize(),
+                    configuration.getIterationsCount()
+            );
+            testSuites.add(testSuite);
         }
+        List<BenchmarkResult> resultList = executeTestSuites(testSuites);
+        view.displayResults(resultList);
+    }
+
+    private List<BenchmarkResult> executeTestSuites(List<TestSuite> testSuites) {
+        List<BenchmarkResult> resultList = new ArrayList<>();
         for (TestSuite suite : testSuites) {
-            if (caseTypes.contains(CaseType.Adding)) {
+            if (configuration.getCaseTypes().contains(CaseType.Adding)) {
                 resultList.addAll(suite.executeAddingCase());
             }
-            if (caseTypes.contains(CaseType.Removing)) {
+            if (configuration.getCaseTypes().contains(CaseType.Removing)) {
                 resultList.addAll(suite.executeRemovingCase());
             }
-            if (caseTypes.contains(CaseType.Browsing)) {
+            if (configuration.getCaseTypes().contains(CaseType.Browsing)) {
                 resultList.addAll(suite.executeBrowsingCase());
             }
-            if (caseTypes.contains(CaseType.Containing)) {
+            if (configuration.getCaseTypes().contains(CaseType.Containing)) {
                 resultList.addAll(suite.executeContainingCase());
             }
         }
-        view.displayResults(resultList);
+        return resultList;
     }
 }
 

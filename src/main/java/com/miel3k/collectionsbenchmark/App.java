@@ -4,6 +4,7 @@ import com.miel3k.collectionsbenchmark.controller.BenchmarkController;
 import com.miel3k.collectionsbenchmark.enums.CaseType;
 import com.miel3k.collectionsbenchmark.enums.Model;
 import com.miel3k.collectionsbenchmark.enums.SuitType;
+import com.miel3k.collectionsbenchmark.model.BenchmarkConfiguration;
 import com.miel3k.collectionsbenchmark.view.BenchmarkView;
 import com.miel3k.collectionsbenchmark.view.ConsoleView;
 import picocli.CommandLine;
@@ -25,8 +26,15 @@ public class App implements Runnable {
         caseTypeList.add(CaseType.Removing);
         caseTypeList.add(CaseType.Browsing);
         caseTypeList.add(CaseType.Containing);
+        BenchmarkConfiguration benchmarkConfiguration = new BenchmarkConfiguration(
+                Model.Author,
+                suitTypeList,
+                caseTypeList,
+                10,
+                5
+        );
         BenchmarkView benchmarkView = new ConsoleView();
-        BenchmarkController benchmarkController = new BenchmarkController(benchmarkView, Model.Author, suitTypeList, caseTypeList, 10, 5);
+        BenchmarkController benchmarkController = new BenchmarkController(benchmarkView, benchmarkConfiguration);
         benchmarkController.run();
     }
 
