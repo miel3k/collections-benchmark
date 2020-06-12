@@ -23,91 +23,146 @@ public class SetTestSuite<T extends Testable<T>> implements TestSuite {
 
     @Override
     public List<BenchmarkResult> executeAddingCase() {
-        String caseType = "Adding";
+        List<BenchmarkResult> resultList = new ArrayList<>();
+        resultList.add(executeHashSetAddingCase());
+        resultList.add(executeLinkedHashSetAddingCase());
+        resultList.add(executeTreeSetAddingCase());
+        return resultList;
+    }
+
+    private BenchmarkResult executeHashSetAddingCase() {
         Set<T> hashSet = TestSuiteSupplier.getHashSet(testObject, collectionSize);
-        BenchmarkResult hashSetResult = executeSetCase(
-                caseType,
+        return executeSetCase(
+                "Adding",
                 hashSet,
                 collection -> collection.add(testObject.copy())
         );
+    }
+
+    private BenchmarkResult executeLinkedHashSetAddingCase() {
         Set<T> linkedHashSet = TestSuiteSupplier.getLinkedHashSet(testObject, collectionSize);
-        BenchmarkResult linkedHashSetResult = executeSetCase(
-                caseType,
+        return executeSetCase(
+                "Adding",
                 linkedHashSet,
                 collection -> collection.add(testObject.copy())
         );
+    }
+
+    private BenchmarkResult executeTreeSetAddingCase() {
         Set<T> treeSet = TestSuiteSupplier.getTreeSet(testObject, collectionSize);
-        BenchmarkResult treeSetResult = executeSetCase(
-                caseType,
+        return executeSetCase(
+                "Adding",
                 treeSet,
                 collection -> collection.add(testObject.copy())
         );
-        List<BenchmarkResult> resultList = new ArrayList<>();
-        resultList.add(hashSetResult);
-        resultList.add(linkedHashSetResult);
-        resultList.add(treeSetResult);
-        return resultList;
     }
 
     @Override
     public List<BenchmarkResult> executeRemovingCase() {
-        String caseType = "Removing";
+        List<BenchmarkResult> resultList = new ArrayList<>();
+        resultList.add(executeHashSetRemovingCase());
+        resultList.add(executeLinkedHashSetRemovingCase());
+        resultList.add(executeTreeSetRemovingCase());
+        return resultList;
+    }
+
+    private BenchmarkResult executeHashSetRemovingCase() {
         Set<T> hashSet = TestSuiteSupplier.getHashSet(testObject, collectionSize);
-        BenchmarkResult hashSetResult = executeSetCase(
-                caseType,
+        return executeSetCase(
+                "Removing",
                 hashSet,
                 collection -> collection.remove(testObject)
         );
+    }
+
+    private BenchmarkResult executeLinkedHashSetRemovingCase() {
         Set<T> linkedHashSet = TestSuiteSupplier.getLinkedHashSet(testObject, collectionSize);
-        BenchmarkResult linkedHashSetResult = executeSetCase(
-                caseType,
+        return executeSetCase(
+                "Removing",
                 linkedHashSet,
                 collection -> collection.remove(testObject)
         );
+    }
+
+    private BenchmarkResult executeTreeSetRemovingCase() {
         Set<T> treeSet = TestSuiteSupplier.getTreeSet(testObject, collectionSize);
-        BenchmarkResult treeSetResult = executeSetCase(
-                caseType,
+        return executeSetCase(
+                "Removing",
                 treeSet,
                 collection -> collection.remove(testObject)
         );
-        List<BenchmarkResult> resultList = new ArrayList<>();
-        resultList.add(hashSetResult);
-        resultList.add(linkedHashSetResult);
-        resultList.add(treeSetResult);
-        return resultList;
     }
 
     @Override
     public List<BenchmarkResult> executeBrowsingCase() {
-        return new ArrayList<>();
+        List<BenchmarkResult> resultList = new ArrayList<>();
+        resultList.add(executeHashSetBrowsingCase());
+        resultList.add(executeLinkedHashSetBrowsingCase());
+        resultList.add(executeTreeSetBrowsingCase());
+        return resultList;
+    }
+
+    private BenchmarkResult executeHashSetBrowsingCase() {
+        Set<T> hashSet = TestSuiteSupplier.getHashSet(testObject, collectionSize);
+        return executeSetCase(
+                "Browsing",
+                hashSet,
+                collection -> collection.iterator().next()
+        );
+    }
+
+    private BenchmarkResult executeLinkedHashSetBrowsingCase() {
+        Set<T> linkedHashSet = TestSuiteSupplier.getLinkedHashSet(testObject, collectionSize);
+        return executeSetCase(
+                "Browsing",
+                linkedHashSet,
+                collection -> collection.iterator().next()
+        );
+    }
+
+    private BenchmarkResult executeTreeSetBrowsingCase() {
+        Set<T> treeSet = TestSuiteSupplier.getTreeSet(testObject, collectionSize);
+        return executeSetCase(
+                "Browsing",
+                treeSet,
+                collection -> collection.iterator().next()
+        );
     }
 
     @Override
     public List<BenchmarkResult> executeContainingCase() {
-        String caseType = "Containing";
+        List<BenchmarkResult> resultList = new ArrayList<>();
+        resultList.add(executeHashSetContainingCase());
+        resultList.add(executeLinkedHashSetContainingCase());
+        resultList.add(executeTreeSetContainingCase());
+        return resultList;
+    }
+
+    private BenchmarkResult executeHashSetContainingCase() {
         Set<T> hashSet = TestSuiteSupplier.getHashSet(testObject, collectionSize);
-        BenchmarkResult hashSetResult = executeSetCase(
-                caseType,
+        return executeSetCase(
+                "Containing",
                 hashSet,
                 collection -> collection.contains(testObject)
         );
+    }
+
+    private BenchmarkResult executeLinkedHashSetContainingCase() {
         Set<T> linkedHashSet = TestSuiteSupplier.getLinkedHashSet(testObject, collectionSize);
-        BenchmarkResult linkedHashSetResult = executeSetCase(
-                caseType,
+        return executeSetCase(
+                "Containing",
                 linkedHashSet,
                 collection -> collection.contains(testObject)
         );
+    }
+
+    private BenchmarkResult executeTreeSetContainingCase() {
         Set<T> treeSet = TestSuiteSupplier.getTreeSet(testObject, collectionSize);
-        BenchmarkResult treeSetResult = executeSetCase(
-                caseType,
+        return executeSetCase(
+                "Containing",
                 treeSet,
                 collection -> collection.contains(testObject)
         );
-        List<BenchmarkResult> resultList = new ArrayList<>();
-        resultList.add(hashSetResult);
-        resultList.add(linkedHashSetResult);
-        resultList.add(treeSetResult);
-        return resultList;
     }
 
     private BenchmarkResult executeSetCase(String caseType, Set<T> set, Setable<T> setable) {
