@@ -15,28 +15,28 @@ import java.util.List;
 @CommandLine.Command(name = "jcb", mixinStandardHelpOptions = true, version = "jcb - Java Collections Benchmark 0.0.1")
 public class App implements Runnable {
 
-    @CommandLine.Option(names = "-l", description = "list: List benchmark")
+    @CommandLine.Option(names = {"-l", "--list"}, description = "list: List benchmark")
     boolean isListBenchmarkEnabled;
 
-    @CommandLine.Option(names = "-s", description = "set: Set benchmark")
+    @CommandLine.Option(names = {"-s", "--set"}, description = "set: Set benchmark")
     boolean isSetBenchmarkEnabled;
 
-    @CommandLine.Option(names = "-q", description = "queue: Queue benchmark")
+    @CommandLine.Option(names = {"-q", "--queue"}, description = "queue: Queue benchmark")
     boolean isQueueBenchmarkEnabled;
 
-    @CommandLine.Option(names = "-c", description = "cases: a - adding, r - removing, b - browsing, c - containing", defaultValue = "arbc")
+    @CommandLine.Option(names = {"-c", "--cases"}, description = "cases: a - adding, r - removing, b - browsing, c - containing", defaultValue = "arbc")
     String cases;
 
-    @CommandLine.Option(names = "-e", description = "entity: Author || Book", defaultValue = "Author")
+    @CommandLine.Option(names = {"-e", "--entity"}, description = "entity: Author || Book", defaultValue = "Author")
     String entity;
 
-    @CommandLine.Option(names = "-cs", description = "collection size: (int)", defaultValue = "10")
+    @CommandLine.Option(names = {"-cs", "--collectionSize"}, description = "collection size: (int)", defaultValue = "10")
     int collectionSize;
 
-    @CommandLine.Option(names = "-i", description = "iterations: (int)", defaultValue = "5")
+    @CommandLine.Option(names = {"-i", "--iterations"}, description = "iterations: (int)", defaultValue = "5")
     int iterations;
 
-    @CommandLine.Option(names = "-w", description = "write: write results to file")
+    @CommandLine.Option(names = {"-w", "--write"}, description = "write: write results to file")
     boolean isWriteEnabled;
 
     public void run() {
