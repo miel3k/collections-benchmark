@@ -3,7 +3,7 @@ package com.miel3k.collectionsbenchmark.model;
 public class BenchmarkResult {
 
     public static String HEADER = String.format(
-            "%16s%16s%16s%16s%16s%16s%40s",
+            "%16s%16s%32s%16s%16s%16s%40s",
             "Model",
             "Case",
             "Collection",
@@ -70,7 +70,7 @@ public class BenchmarkResult {
     @Override
     public String toString() {
         return String.format(
-                "%16s%16s%16s%16d%16d%16d%40d",
+                "%16s%16s%32s%16d%16d%16d%40d",
                 model,
                 caseType,
                 collection,
