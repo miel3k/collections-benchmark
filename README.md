@@ -1,14 +1,14 @@
-# collections-benchmarkController
+# collections-benchmark
 
 ## Usage
 
-- ./gradlew run --args="--help"
+- `./gradlew run --args="--help"`
 
 ![usage.jpg](image/usage.png)
 
 ## Example
 
-- ./gradlew run --args="-l -c ar -e Book -cs 1000 -i 1000 -w"
+- `./gradlew run --args="-l -c ar -e Book -cs 1000 -i 1000 -w"`
 
 | Model | Case             | Collection | Size | Current Size | Iterations | Operation (avg) time (ns) |
 |-------|------------------|------------|------|--------------|------------|---------------------------|
