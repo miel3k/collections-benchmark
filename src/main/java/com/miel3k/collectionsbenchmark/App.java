@@ -41,12 +41,13 @@ public class App implements Runnable {
 
     public void run() {
         System.out.println("Hello from Java Collections Benchmark");
+        int size = parseCollectionSize();
         BenchmarkConfiguration benchmarkConfiguration = new BenchmarkConfiguration(
                 parseEntity(),
                 parseTestSuiteTypes(),
                 parseCaseTypes(),
-                collectionSize,
-                iterations,
+                size,
+                parseIterations(size),
                 isWriteEnabled
         );
         BenchmarkView benchmarkView = new ConsoleView();
@@ -86,6 +87,22 @@ public class App implements Runnable {
             benchmarkEntity = BenchmarkEntity.Author;
         }
         return benchmarkEntity;
+    }
+
+    private int parseCollectionSize() {
+        if (collectionSize >= 0) {
+            return collectionSize;
+        } else {
+            return 1;
+        }
+    }
+
+    private int parseIterations(int collectionSize) {
+        if (iterations >= collectionSize) {
+            return iterations;
+        } else {
+            return collectionSize;
+        }
     }
 
     public static void main(final String[] args) {
