@@ -30,7 +30,7 @@ public class App implements Runnable {
     @CommandLine.Option(names = {"-e", "--entity"}, description = "entity: Author || Book", defaultValue = "Author")
     String entity;
 
-    @CommandLine.Option(names = {"-cs", "--collection-size"}, description = "collection size: (int)", defaultValue = "10")
+    @CommandLine.Option(names = {"-cs", "--collectionSize"}, description = "collection size: (int)", defaultValue = "10")
     int collectionSize;
 
     @CommandLine.Option(names = {"-i", "--iterations"}, description = "iterations: (int)", defaultValue = "5")
@@ -39,7 +39,7 @@ public class App implements Runnable {
     @CommandLine.Option(names = {"-w", "--write"}, description = "write: write results to file")
     boolean isWriteEnabled;
 
-    @CommandLine.Option(names = {"-wu", "--warm-up"}, description = "warm up: JVM warm-up")
+    @CommandLine.Option(names = {"-wu", "--warmUp"}, description = "warm up: JVM warm-up")
     boolean isWarmUpEnabled;
 
     public void run() {
