@@ -4,6 +4,7 @@ import com.miel3k.collectionsbenchmark.enums.TestCaseType;
 import com.miel3k.collectionsbenchmark.enums.TestSuiteType;
 import com.miel3k.collectionsbenchmark.model.BenchmarkConfiguration;
 import com.miel3k.collectionsbenchmark.model.BenchmarkResult;
+import com.miel3k.collectionsbenchmark.model.Warmer;
 import com.miel3k.collectionsbenchmark.suites.TestSuite;
 import com.miel3k.collectionsbenchmark.suites.factory.TestSuiteFactory;
 import com.miel3k.collectionsbenchmark.view.BenchmarkView;
@@ -28,6 +29,7 @@ public class BenchmarkController {
     }
 
     public void run() {
+        if (configuration.isWarmUpEnabled()) Warmer.warmUp();
         List<TestSuite> testSuites = new ArrayList<>();
         for (TestSuiteType testSuiteType : configuration.getTestSuiteTypes()) {
             TestSuite testSuite = TestSuiteFactory.getTestSuite(

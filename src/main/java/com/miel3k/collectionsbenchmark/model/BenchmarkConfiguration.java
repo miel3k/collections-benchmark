@@ -14,6 +14,7 @@ public class BenchmarkConfiguration {
     private final int collectionSize;
     private final int iterationsCount;
     private final boolean isWriteEnabled;
+    private final boolean isWarmUpEnabled;
 
     public BenchmarkConfiguration(
             BenchmarkEntity benchmarkEntity,
@@ -21,7 +22,8 @@ public class BenchmarkConfiguration {
             List<TestCaseType> caseTypeList,
             int collectionSize,
             int iterationsCount,
-            boolean isWriteEnabled
+            boolean isWriteEnabled,
+            boolean isWarmUpEnabled
     ) {
         this.benchmarkEntity = benchmarkEntity;
         this.testSuiteTypes = testSuiteTypeList;
@@ -29,6 +31,7 @@ public class BenchmarkConfiguration {
         this.collectionSize = collectionSize;
         this.iterationsCount = iterationsCount;
         this.isWriteEnabled = isWriteEnabled;
+        this.isWarmUpEnabled = isWarmUpEnabled;
     }
 
     public BenchmarkEntity getBenchmarkEntity() {
@@ -53,5 +56,9 @@ public class BenchmarkConfiguration {
 
     public boolean isWriteEnabled() {
         return isWriteEnabled;
+    }
+
+    public boolean isWarmUpEnabled() {
+        return isWarmUpEnabled;
     }
 }
